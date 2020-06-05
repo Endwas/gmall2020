@@ -5,10 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * @param
- * @return
- */
+
 public class PmsBaseCatalog1 implements Serializable {
     @Id
     @Column
