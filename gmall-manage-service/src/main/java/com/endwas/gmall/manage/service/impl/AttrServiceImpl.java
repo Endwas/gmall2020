@@ -9,10 +9,12 @@ import com.endwas.gmall.manage.mapper.PmsBaseAttrValueMapper;
 import com.endwas.gmall.manage.mapper.PmsBaseSaleAttrMapper;
 import com.endwas.gmall.service.AttrService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AttrServiceImpl implements AttrService {
@@ -92,6 +94,12 @@ public class AttrServiceImpl implements AttrService {
     public List<PmsBaseSaleAttr> getBaseSaleAttrList() {
         List<PmsBaseSaleAttr> pmsBaseSaleAttrs = pmsBaseSaleAttrMapper.selectAll();
         return pmsBaseSaleAttrs;
+    }
+
+    @Override
+    public List<PmsBaseAttrInfo> getBaseAttrInfoByAttrId(String attrId) {
+        List<PmsBaseAttrInfo> pmsBaseAttrInfos = pmsBaseAttrInfoMapper.selectBaseAttrInfoById(attrId);
+        return pmsBaseAttrInfos;
     }
 
 

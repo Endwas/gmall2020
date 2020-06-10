@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.endwas.gmall.manage.mapper.PmsBaseAttrInfoMapper" >
+    <select id="selectBaseAttrInfoById" resultMap="selectBaseAttrInfoByIdMap">
+        SELECT
+            pms_base_attr_info.id AS ba_id,
+            pms_base_attr_value.id AS bav_id,
+            pms_base_attr_info.*, pms_base_attr_value.*
+        FROM
+            pms_base_attr_info,
+            pms_base_attr_value
+        WHERE
+            pms_base_attr_value.attr_id = pms_base_attr_info.id
+        AND pms_base_attr_value.id IN (${attrId})
+    </select>
+
+    <resultMap id="selectBaseAttrInfoByIdMap" type="com.endwas.gmall.bean.PmsBaseAttrInfo" autoMapping="true">
+        <result column="ba_id" property="id"></result>
+        <collection property="attrValueList" ofType="com.endwas.gmall.bean.PmsBaseAttrValue" autoMapping="true">
+            <result column="bav_id" property="id"></result>
+
+
+        </collection>
+
+
+    </resultMap>
+</mapper>

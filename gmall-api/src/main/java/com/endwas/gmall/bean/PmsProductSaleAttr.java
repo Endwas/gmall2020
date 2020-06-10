@@ -1,7 +1,5 @@
 package com.endwas.gmall.bean;
 
-import com.endwas.gmall.bean.PmsProductSaleAttrValue;
-
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;

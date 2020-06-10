@@ -11,6 +11,7 @@ import com.endwas.gmall.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service

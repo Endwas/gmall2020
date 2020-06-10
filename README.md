@@ -17,6 +17,9 @@ gmall-manage-service 服务的端口为8071
 gmall-item-web 服务的端口为8082
 gmall-item-service 服务的端口为8072
 
+gmall-search-web 服务的端口为8083
+gmall-search-service 服务的端口为8073
+
 gmall-redisson-test 服务的端口为8081|8082|8083
 使用nginx进行服务的分发，所以开启三个服务做测试
 
@@ -47,7 +50,7 @@ gmall-redisson-test 服务的端口为8081|8082|8083
 `解决办法：使用的是windows版的nginx，在start nginx启动的时候就只要闪框，也没有告知启动状态，代理又失败了，
 那么可以在nginx文件夹中使用nginx.exe -s stop尝试关闭，如果nginx配置有问题，会命令行提示字符或参数错误
 如果是端口被占用，也会提示80端口被占用，那么此时去任务管理器kill就好
-但有种特别情况，sql server reporting占用了，显示服务器名称叫system，无法kill。那么自行关闭：
+但有种特别情况，sql server reporting占用了，显示服务名称叫system，无法kill。那么自行关闭：
 开始菜单--microsoft sql server 2016--Sql Server 配置管理器 -- Sql Server 服务 -- Sql Server reporting services(右键停止)
 `
 6.数据库连接失败

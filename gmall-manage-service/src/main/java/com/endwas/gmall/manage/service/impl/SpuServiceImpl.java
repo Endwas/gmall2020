@@ -90,5 +90,21 @@ public class SpuServiceImpl implements SpuService {
 
     }
 
+    /**
+     *
+     *  因为使用tkmapper查询将返回该商品属性和属性值，所以需要将当前查询的sku属性值准确区分
+     *  需要使用联合查询，将spuSaleAttrList查询的结果中包含transient字段isChecked
+     *  所以不使用tkmapper改为传统mybatis
+     *
+     */
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String productId, String skuId) {
+        List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.spuSaleAttrListCheckBySku(productId,skuId);
+
+
+        return pmsProductSaleAttrs;
+
+    }
+
 
 }

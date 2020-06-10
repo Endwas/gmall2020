@@ -14,4 +14,7 @@ public interface SpuService {
     String saveSpuInfo(PmsProductInfo pmsProductInfo);
 
     List<PmsProductImage> spuImageList(String spuId);
+
+
+    List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String productId, String skuId);
 }
