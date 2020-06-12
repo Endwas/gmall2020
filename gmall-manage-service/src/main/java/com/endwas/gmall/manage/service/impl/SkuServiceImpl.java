@@ -2,10 +2,7 @@ package com.endwas.gmall.manage.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
-import com.endwas.gmall.bean.PmsSkuAttrValue;
-import com.endwas.gmall.bean.PmsSkuImage;
-import com.endwas.gmall.bean.PmsSkuInfo;
-import com.endwas.gmall.bean.PmsSkuSaleAttrValue;
+import com.endwas.gmall.bean.*;
 import com.endwas.gmall.manage.mapper.PmsSkuAttrValueMapper;
 import com.endwas.gmall.manage.mapper.PmsSkuImageMapper;
 import com.endwas.gmall.manage.mapper.PmsSkuInfoMapper;
@@ -16,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import redis.clients.jedis.Jedis;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 import java.util.UUID;
@@ -179,6 +177,8 @@ public class SkuServiceImpl implements SkuService {
 
 
     }
+
+
 
 
 }

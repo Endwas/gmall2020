@@ -50,7 +50,7 @@ public class SearchController {
 
 
         //移除重复的平台属性
-        //同时生成面包屑功能，需要注意循环嵌套！！很容易就赋空值了
+        //同时生成面包屑功能，需要注意循环嵌套，delID每次迭代都需要新的迭代器
         List<PmsSearchCrumb> pmsSearchCrumbList = new ArrayList<>();
         String[] delValueIds = pmsSearchParam.getValueId();
         if (delValueIds != null) {

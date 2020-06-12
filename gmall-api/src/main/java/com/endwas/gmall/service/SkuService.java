@@ -1,5 +1,6 @@
 package com.endwas.gmall.service;
 
+import com.endwas.gmall.bean.OmsCartItem;
 import com.endwas.gmall.bean.PmsSkuInfo;
 import com.endwas.gmall.bean.PmsSkuSaleAttrValue;
 
@@ -13,4 +14,5 @@ public interface SkuService {
     List<PmsSkuInfo> getSkuSaleAttrValueListBySpu(String productId);
 
     List<PmsSkuInfo> getAllSkuInfo();
+
 }

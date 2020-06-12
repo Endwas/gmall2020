@@ -20,6 +20,9 @@ gmall-item-service 服务的端口为8072
 gmall-search-web 服务的端口为8083
 gmall-search-service 服务的端口为8073
 
+gmall-search-web 服务的端口为8084
+gmall-search-service 服务的端口为8074
+
 gmall-redisson-test 服务的端口为8081|8082|8083
 使用nginx进行服务的分发，所以开启三个服务做测试
 
