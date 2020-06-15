@@ -2,16 +2,17 @@ package com.endwas.gmall.cart;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
+import com.endwas.gmall.annotations.LoginRequired;
 import com.endwas.gmall.bean.OmsCartItem;
 import com.endwas.gmall.bean.PmsSkuInfo;
 import com.endwas.gmall.service.CartService;
 import com.endwas.gmall.service.SkuService;
 import com.endwas.gmall.util.CookieUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,10 +30,15 @@ public class CartController {
     @Reference
     SkuService skuService;
 
+
+
+
     @RequestMapping("checkCart")
+    @LoginRequired(loginSuccess = false)
     public String checkCart(String isChecked, String skuId, ModelMap modelMap, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         List<OmsCartItem> omsCartItemList;
-        String memberId ="";
+        String memberId = (String) httpServletRequest.getAttribute("memberId");
+        String nickname = (String) httpServletRequest.getAttribute("nickname");
         //判断用户是否登录,未登录就从缓存中取，然后根据用户操作异步ajax修改Cookie后返回
         if (StringUtils.isBlank(memberId)){
             String cartListCookie = CookieUtil.getCookieValue(httpServletRequest, "cartListCookie", true);
@@ -47,7 +53,11 @@ public class CartController {
         }else {
             //调用checkCart修改数据库服务
             cartService.checkCart(isChecked, skuId, memberId);
+            // 缓存同步
+            cartService.flushCartCache(memberId);
+            //获得用户最新的购物车(redis中获取)
             omsCartItemList = cartService.getUserCart(memberId);
+
         }
 
         for (OmsCartItem cartItem : omsCartItemList) {
@@ -59,10 +69,12 @@ public class CartController {
         return "cartListInner";
     }
 
+    @LoginRequired(loginSuccess = false)
     @RequestMapping("cartList")
     public String cartList(ModelMap modelMap, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
         List<OmsCartItem> omsCartItemList;
-        String memberId ="";
+        String memberId = (String) httpServletRequest.getAttribute("memberId");
+        String nickname = (String) httpServletRequest.getAttribute("nickname");
         // 未登录从Cookie中取出购物车数据
         if (StringUtils.isBlank(memberId)){
             String cartListCookie = CookieUtil.getCookieValue(httpServletRequest, "cartListCookie", true);
@@ -83,11 +95,13 @@ public class CartController {
 
 
     @RequestMapping("addToCart")
+    @LoginRequired(loginSuccess = false)
     public ModelAndView addToCart(String skuId, int quantity, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
         List<OmsCartItem> omsCartItemList = new ArrayList<>();
         PmsSkuInfo pmsSkuInfo = skuService.getSkuById(skuId);
         // 判断当前用户登录状态，登录就读取数据库/缓存中的数据，没登陆就读取Cookie中的数据
-        String memberId = "";
+        String memberId = (String) httpServletRequest.getAttribute("memberId");
+        String nickname = (String) httpServletRequest.getAttribute("nickname");
 
         OmsCartItem omsCartItem = new OmsCartItem();
         omsCartItem.setProductId(pmsSkuInfo.getProductId());
@@ -131,7 +145,7 @@ public class CartController {
                 cartService.updateCart(omsCartItemFromDb);
             } else{
                 omsCartItem.setMemberId(memberId);
-                omsCartItem.setMemberNickname("Endwas");
+                omsCartItem.setMemberNickname(nickname);
                 cartService.addCart(omsCartItem);
             }
             cartService.flushCartCache(memberId);

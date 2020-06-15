@@ -47,7 +47,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void flushCartCache(String memberId) {
-
+        // 每次修改都需要flushCache，两次修改在1.addToCart登录的情况，2.checkCart登录的情况
         //查询所有的购物车信息
         OmsCartItem omsCartItem =new OmsCartItem();
         omsCartItem.setMemberId(memberId);
@@ -114,8 +114,7 @@ public class CartServiceImpl implements CartService {
         Example example = new Example(OmsCartItem.class);
         example.createCriteria().andEqualTo("memberId", memberId).andEqualTo("productSkuId", skuId);
         omsCartItemMapper.updateByExampleSelective(omsCartItem, example);
-        // 缓存同步
-        flushCartCache(memberId);
+
     }
 
 }

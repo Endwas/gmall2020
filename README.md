@@ -22,6 +22,12 @@ gmall-search-service 服务的端口为8073
 gmall-search-web 服务的端口为8084
 gmall-search-service 服务的端口为8074
 
+gmall-passport-web 服务的端口为8085
+gmall-user-service 服务的端口为8075
+
+gmall-order-web 服务的端口为8086
+gmall-order-service 服务的端口为8076
+
 gmall-redisson-test 服务的端口为8081|8082|8083
 使用nginx进行服务的分发，所以开启三个服务做测试
 
@@ -55,11 +61,11 @@ gmall-redisson-test 服务的端口为8081|8082|8083
 但有种特别情况，sql server reporting占用了，显示服务名称叫system，无法kill。那么自行关闭：
 开始菜单--microsoft sql server 2016--Sql Server 配置管理器 -- Sql Server 服务 -- Sql Server reporting services(右键停止)
 `
-6.数据库连接失败或签名错误
+6.数据库连接失败或提示时区错误
 
 `解决办法：安装自己数据库版本选择对应的连接驱动，如我使用的是8.0的mysql需要将版本号更改为8.0.11否则会报错
 如果版本没问题，可能是时区的问题，需要在mysql配置后面加上&serverTimezone=Asia/Shanghai`
 
-
-
+7.拦截器无法拦截部分方法
+`解决办法：要将springboot启动类放在gmall下，和web-util中的config，annotation同级这样才能被扫描到`
 
