@@ -19,8 +19,8 @@ gmall-item-web 服务的端口为8082
 gmall-search-web 服务的端口为8083
 gmall-search-service 服务的端口为8073
 
-gmall-search-web 服务的端口为8084
-gmall-search-service 服务的端口为8074
+gmall-cart-web 服务的端口为8084
+gmall-cart-service 服务的端口为8074
 
 gmall-passport-web 服务的端口为8085
 gmall-user-service 服务的端口为8075
@@ -68,4 +68,4 @@ gmall-redisson-test 服务的端口为8081|8082|8083
 
 7.拦截器无法拦截部分方法
 `解决办法：要将springboot启动类放在gmall下，和web-util中的config，annotation同级这样才能被扫描到`
-
+-------------------------------------------------------------------------------
