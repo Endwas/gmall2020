@@ -3,7 +3,7 @@
 后续使用了elasticsearch,activemq,redisson,weibo单点登录、支付宝付费接口等技术
 同时引用了很多工具包，StringUtils,fastjson等
 FastDfs没有引入，因为不仅依赖的东西多配置的麻烦，只有图片服务器使用到了。所以暂时只添加了依赖包，工具类和使用代码还没写
-Mq整合在了payment和order服务中，使用了普通队列和延迟队列****
+Mq整合在了payment和order服务中，使用了普通队列和延迟队列，支付宝的接口好像使用不了，但就是需要理解好请求返回页面和支付宝回调页面即可****
 
 
 
