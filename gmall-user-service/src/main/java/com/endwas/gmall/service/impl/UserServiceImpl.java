@@ -3,7 +3,9 @@ package com.endwas.gmall.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.endwas.gmall.bean.UmsMember;
+import com.endwas.gmall.bean.UmsMemberReceiveAddress;
 import com.endwas.gmall.mapper.UmsMemberMapper;
+import com.endwas.gmall.mapper.UmsMemberReceiveAddressMapper;
 import com.endwas.gmall.service.UserService;
 import com.endwas.gmall.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -11,12 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UmsMemberMapper umsMemberMapper;
+
+    @Autowired
+    UmsMemberReceiveAddressMapper umsMemberReceiveAddressMapper;
 
     @Autowired
     RedisUtil redisUtil;
@@ -64,6 +71,24 @@ public class UserServiceImpl implements UserService {
         return umsMember;
 
     }
+
+    @Override
+    public List<UmsMemberReceiveAddress> getUserAddress(String memberId) {
+        UmsMemberReceiveAddress umsMemberReceiveAddress = new UmsMemberReceiveAddress();
+        umsMemberReceiveAddress.setMemberId(memberId);
+        List<UmsMemberReceiveAddress> addresses = umsMemberReceiveAddressMapper.select(umsMemberReceiveAddress);
+        return addresses;
+    }
+
+    @Override
+    public UmsMemberReceiveAddress getReceiveAddressById(String receiveAddressId) {
+        UmsMemberReceiveAddress umsMemberReceiveAddress = new UmsMemberReceiveAddress();
+        umsMemberReceiveAddress.setId(receiveAddressId);
+        UmsMemberReceiveAddress address = umsMemberReceiveAddressMapper.selectOne(umsMemberReceiveAddress);
+        return address;
+
+    }
+
 
     @Override
     public UmsMember checkOauthUser(Map<String, String> userInfo) {

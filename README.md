@@ -2,7 +2,8 @@
 ****本SSM项目使用Springboot来生成多个web、service服务，通过dubbo和zookeeper来做服务管理和监控，后台模块前端分离运行在nodejs上
 后续使用了elasticsearch,activemq,redisson,weibo单点登录、支付宝付费接口等技术
 同时引用了很多工具包，StringUtils,fastjson等
-FastDfs没有引入，因为不仅依赖的东西多配置的麻烦，只有图片服务器使用到了。所以暂时只添加了依赖包，工具类和使用代码还没写****
+FastDfs没有引入，因为不仅依赖的东西多配置的麻烦，只有图片服务器使用到了。所以暂时只添加了依赖包，工具类和使用代码还没写
+Mq整合在了payment和order服务中，使用了普通队列和延迟队列****
 
 
 
@@ -27,6 +28,8 @@ gmall-user-service 服务的端口为8075
 
 gmall-order-web 服务的端口为8086
 gmall-order-service 服务的端口为8076
+
+gmall-payment 服务的端口为8087
 
 gmall-redisson-test 服务的端口为8081|8082|8083
 使用nginx进行服务的分发，所以开启三个服务做测试
@@ -68,4 +71,4 @@ gmall-redisson-test 服务的端口为8081|8082|8083
 
 7.拦截器无法拦截部分方法
 `解决办法：要将springboot启动类放在gmall下，和web-util中的config，annotation同级这样才能被扫描到`
--------------------------------------------------------------------------------
+

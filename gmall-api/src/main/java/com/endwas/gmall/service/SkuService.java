@@ -4,6 +4,7 @@ import com.endwas.gmall.bean.OmsCartItem;
 import com.endwas.gmall.bean.PmsSkuInfo;
 import com.endwas.gmall.bean.PmsSkuSaleAttrValue;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface SkuService {
@@ -15,4 +16,5 @@ public interface SkuService {
 
     List<PmsSkuInfo> getAllSkuInfo();
 
+    boolean checkPrice(String productSkuId, BigDecimal price);
 }
