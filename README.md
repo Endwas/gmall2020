@@ -1,4 +1,6 @@
 # gmall2020
+## 资料和工具在博客获取 https://endwas.cn
+
 ****本SSM项目使用Springboot来生成多个web、service服务，通过dubbo和zookeeper来做服务管理和监控，后台模块前端分离运行在nodejs上
 后续使用了elasticsearch,activemq,redisson,weibo单点登录、支付宝付费接口等技术
 同时引用了很多工具包，StringUtils,fastjson等
